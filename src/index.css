@@ -187,11 +187,4 @@ li:hover {
     width: 20rem;
     left: 9%;
   }
-
-  .modal .cancel {
-    position: sticky;
-    right: -4rem;
-    top: -2rem;
-    margin-top: -2rem;
-  }
 }
