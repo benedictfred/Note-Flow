@@ -85,6 +85,7 @@ textarea {
   cursor: pointer;
   transition: all 0.2s;
   position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 li:hover {
@@ -120,14 +121,16 @@ li:hover {
   z-index: 20;
 }
 
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
 .modal .cancel {
   font-size: 3rem;
-  position: sticky;
-  right: 0rem;
-  top: -2rem;
-  margin-top: -2rem;
+  position: absolute;
+  right: 1rem;
+  top: 0rem;
   cursor: pointer;
-  z-index: 30;
 }
 .overlay {
   position: fixed;
@@ -177,10 +180,18 @@ li:hover {
 
   .notes button {
     top: 0.2rem;
+    right: 0;
   }
 
   .modal {
     width: 20rem;
     left: 9%;
+  }
+
+  .modal .cancel {
+    position: sticky;
+    right: -4rem;
+    top: -2rem;
+    margin-top: -2rem;
   }
 }
