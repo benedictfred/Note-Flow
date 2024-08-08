@@ -17,10 +17,6 @@ function App() {
     setNoteId(note);
   }
 
-  function handleDeleteNote(id) {
-    setNotes((notes) => notes.filter((note) => note.id !== id));
-  }
-
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("notes"));
     if (items) setNotes(items);
@@ -28,7 +24,12 @@ function App() {
 
   useEffect(() => {
     if (notes.length > 0) localStorage.setItem("notes", JSON.stringify(notes));
+    if (notes.length === 0) localStorage.removeItem("notes");
   }, [notes]);
+
+  function handleDeleteNote(id) {
+    setNotes((notes) => notes.filter((note) => note.id !== id));
+  }
 
   return (
     <div className="app">
