@@ -1,17 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [openNote, setOpenNote] = useState(false);
-  const [notes, setNotes] = useState(getLocalStorage());
+  const [notes, setNotes] = useState([]);
   const [noteId, setNoteId] = useState(null);
-
-  function addLocalStorage() {
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }
-
-  function getLocalStorage() {
-    return JSON.parse(localStorage.getItem("notes"));
-  }
 
   function handleModal() {
     setOpenNote(!openNote);
@@ -27,10 +19,17 @@ function App() {
 
   function handleDeleteNote(id) {
     setNotes((notes) => notes.filter((note) => note.id !== id));
-    addLocalStorage();
   }
 
-  addLocalStorage();
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("notes"));
+    if (items) setNotes(items);
+  }, []);
+
+  useEffect(() => {
+    if (notes.length > 0) localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
+
   return (
     <div className="app">
       {openNote && <Modal onModal={handleModal} notes={noteId} />}
