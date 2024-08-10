@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className="app" style={openNote ? { overflow: "hidden" } : {}}>
       {openNote && <Modal onModal={handleModal} notes={noteId} />}
       <Header />
       <NoteList
