@@ -31,8 +31,20 @@ function App() {
     setNotes((notes) => notes.filter((note) => note.id !== id));
   }
 
+  useEffect(() => {
+    if (openNote) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [openNote]);
+
   return (
-    <div className="app" style={openNote ? { overflow: "hidden" } : {}}>
+    <div className="app">
       {openNote && <Modal onModal={handleModal} notes={noteId} />}
       <Header />
       <NoteList
